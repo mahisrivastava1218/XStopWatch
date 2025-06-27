@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react';
 import './App.css';
-import { Button, Stack, Typography } from '@mui/material';
-
 function App() {
   const[time,setTime]=useState(0.00);
   const timerRef = useRef(null);
@@ -23,16 +21,24 @@ function App() {
     timerRef.current=null;
     setTime(0.00);
   }
+   const formatTime = (t) => {
+    const minutes = Math.floor(t / 60);
+    const seconds = Math.floor(t % 60);
+    const centiseconds = Math.floor((t - Math.floor(t)) * 100);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}.${centiseconds
+      .toString()
+      .padStart(2, '0')}`;
+  };
   return (
-   <Stack>
-    <Typography component={'h1'} variant='h1'>
+   <div>
+    <section component={'h1'} variant='h1'>
       Stopwatch
-    </Typography>
-    <Stack direction={'row'}>
-      <Typography>Time: {' '}</Typography>
-      <Typography>{time.toFixed(2)}</Typography>
-    </Stack>
-    <Stack direction={'row'}>
+    </section>
+    <section direction={'row'}>
+      <span>Time: {formatTime(time)}</span>
+      <span>{time.toFixed(2)}</span>
+    </section>
+    <section direction={'row'}>
       {!running && (
         <button name='sStart' onClick={handleStart}>Start</button>
       )}
@@ -40,8 +46,8 @@ function App() {
                 <button name='Stop' onClick={handleStop}>Stop</button>
       )}
       <button name='Reset' onClick={handleReset}>Reset</button>
-    </Stack>
-   </Stack>
+    </section>
+   </div>
   )
 }
 
