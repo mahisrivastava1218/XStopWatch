@@ -34,12 +34,12 @@ function App() {
     </Stack>
     <Stack direction={'row'}>
       {!running && (
-        <button onClick={handleStart}>Start</button>
+        <button name='sStart' onClick={handleStart}>Start</button>
       )}
       {running && (
-                <button onClick={handleStop}>Stop</button>
+                <button name='Stop' onClick={handleStop}>Stop</button>
       )}
-      <button onClick={handleReset}>Reset</button>
+      <button name='Reset' onClick={handleReset}>Reset</button>
     </Stack>
    </Stack>
   )
